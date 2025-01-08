@@ -30,12 +30,12 @@ namespace OTPEntry
       set => SetValue(TypeProperty, value);
     }
 
-    public string EnteredCode { get; private set; }
+    public string Code { get; private set; }
 
     public event EventHandler<EntryEventArgs> CodeCompleted = delegate { };
     public Entry()
     {
-      EnteredCode = string.Empty;
+      Code = string.Empty;
       Orientation = StackOrientation.Horizontal;
       HorizontalOptions = LayoutOptions.Center;
       VerticalOptions = LayoutOptions.Center;
@@ -84,7 +84,7 @@ namespace OTPEntry
         {
           if (e.NewTextValue.Length == 1)
           {
-            UpdateEnteredCode(entries, nextIndex);
+            UpdateCode(entries, nextIndex);
           }
           else if (e.NewTextValue.Length < e.OldTextValue.Length)
           {
@@ -96,17 +96,17 @@ namespace OTPEntry
         };
       }
     }
-    private void UpdateEnteredCode(Microsoft.Maui.Controls.Entry[] entries, int nextIndex)
+    private void UpdateCode(Microsoft.Maui.Controls.Entry[] entries, int nextIndex)
     {
-      EnteredCode = string.Concat(entries.Select(e => e.Text));
-      if (EnteredCode.Length == Length)
+      Code = string.Concat(entries.Select(e => e.Text));
+      if (Code.Length == Length)
       {
         HapticFeedback.Perform(HapticFeedbackType.Click);
         foreach (var entry in entries)
         {
           entry.Unfocus();
         }
-        CodeCompleted?.Invoke(this, new EntryEventArgs(EnteredCode));
+        CodeCompleted?.Invoke(this, new EntryEventArgs(Code));
       }
       else
       {
