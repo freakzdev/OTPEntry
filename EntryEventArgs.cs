@@ -1,7 +1,7 @@
 
 namespace OTPEntry
 {
-  public class CodeCompletedEventArgs(string enteredCode) : EventArgs
+  public class EntryEventArgs(string enteredCode) : EventArgs
   {
     public string EnteredCode { get; } = enteredCode;
   }

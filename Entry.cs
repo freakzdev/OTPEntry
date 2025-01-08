@@ -12,10 +12,10 @@ namespace OTPEntry
 
     public static readonly BindableProperty TypeProperty =
         BindableProperty.Create(
-            nameof(Type),
-            typeof(Type),
+            nameof(EntryTypeEnum),
+            typeof(EntryTypeEnum),
             typeof(Entry),
-            Type.Numeric,
+            EntryTypeEnum.Numeric,
             propertyChanged: OnTypeChanged);
 
     public int Length
@@ -24,15 +24,15 @@ namespace OTPEntry
       set => SetValue(LengthProperty, value);
     }
 
-    public Type Type
+    public EntryTypeEnum Type
     {
-      get => (Type)GetValue(TypeProperty);
+      get => (EntryTypeEnum)GetValue(TypeProperty);
       set => SetValue(TypeProperty, value);
     }
 
     public string EnteredCode { get; private set; }
 
-    public event EventHandler<CodeCompletedEventArgs> CodeCompleted = delegate { };
+    public event EventHandler<EntryEventArgs> CodeCompleted = delegate { };
     public Entry()
     {
       EnteredCode = string.Empty;
@@ -73,7 +73,7 @@ namespace OTPEntry
           BackgroundColor = Colors.White,
           Margin = new Thickness(1, 0, 1, 0),
           TextTransform = TextTransform.None,
-          Keyboard = Type == Type.Numeric ? Keyboard.Numeric : Keyboard.Plain
+          Keyboard = Type == EntryTypeEnum.Numeric ? Keyboard.Numeric : Keyboard.Plain
         };
         entries[i] = entry;
         Children.Add(entry);
@@ -106,7 +106,7 @@ namespace OTPEntry
         {
           entry.Unfocus();
         }
-        CodeCompleted?.Invoke(this, new CodeCompletedEventArgs(EnteredCode));
+        CodeCompleted?.Invoke(this, new EntryEventArgs(EnteredCode));
       }
       else
       {

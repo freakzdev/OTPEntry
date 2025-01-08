@@ -1,6 +1,6 @@
 namespace OTPEntry
 {
-  public enum Type
+  public enum EntryTypeEnum
   {
     Alphanumeric,
     Numeric
