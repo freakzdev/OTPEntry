@@ -1,22 +1,17 @@
+using System.Windows.Input;
+
 namespace OTPEntry
 {
   public class Entry : StackLayout
   {
-    public static readonly BindableProperty LengthProperty =
-        BindableProperty.Create(
-            nameof(Length),
-            typeof(int),
-            typeof(Entry),
-            6,
-            propertyChanged: OnLengthChanged);
-
-    public static readonly BindableProperty TypeProperty =
-        BindableProperty.Create(
-            nameof(EntryTypeEnum),
-            typeof(EntryTypeEnum),
-            typeof(Entry),
-            EntryTypeEnum.Numeric,
-            propertyChanged: OnTypeChanged);
+    // Length Bindable Property
+    public static readonly BindableProperty LengthProperty = BindableProperty.Create(
+        nameof(Length),
+        typeof(int),
+        typeof(Entry),
+        6,
+        propertyChanged: OnLengthChanged
+    );
 
     public int Length
     {
@@ -24,93 +19,155 @@ namespace OTPEntry
       set => SetValue(LengthProperty, value);
     }
 
+    private static void OnLengthChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+      var control = (Entry)bindable;
+      control.Build();
+    }
+
+    // Type Bindable Property
+    public static readonly BindableProperty TypeProperty = BindableProperty.Create(
+        nameof(EntryTypeEnum),
+        typeof(EntryTypeEnum),
+        typeof(Entry),
+        EntryTypeEnum.Numeric,
+        propertyChanged: OnTypeChanged
+    );
+
     public EntryTypeEnum Type
     {
       get => (EntryTypeEnum)GetValue(TypeProperty);
       set => SetValue(TypeProperty, value);
     }
 
-    public string Code { get; private set; }
-
-    public event EventHandler<EntryEventArgs> CodeCompleted = delegate { };
-    public Entry()
-    {
-      Code = string.Empty;
-      Orientation = StackOrientation.Horizontal;
-      HorizontalOptions = LayoutOptions.Center;
-      VerticalOptions = LayoutOptions.Center;
-      CreateEntries();
-    }
-
-    private static void OnLengthChanged(BindableObject bindable, object oldValue, object newValue)
-    {
-      var control = (Entry)bindable;
-      control.CreateEntries();
-    }
-
-
     private static void OnTypeChanged(BindableObject bindable, object oldValue, object newValue)
     {
       var control = (Entry)bindable;
-      control.CreateEntries();
+      control.Build();
     }
 
-    private void CreateEntries()
+    // Entered code property
+    public string Code { get; private set; } = string.Empty;
+
+    // Focus method
+    public new void Focus()
+    {
+      if (Children.Count > 0 && Children[0] is Microsoft.Maui.Controls.Entry firstEntry)
+      {
+        firstEntry.Focus();
+      }
+    }
+
+    // Code Completed Event
+    public event EventHandler<EntryEventArgs> CodeCompleted = delegate { };
+
+    // Bindable Command Property
+    public static readonly BindableProperty CommandProperty = BindableProperty.Create(
+        nameof(Command),
+        typeof(ICommand),
+        typeof(Entry)
+    );
+
+    public ICommand Command
+    {
+      get => (ICommand)GetValue(CommandProperty);
+      set => SetValue(CommandProperty, value);
+    }
+
+    // Class constructor
+    public Entry()
+    {
+      Orientation = StackOrientation.Horizontal;
+      HorizontalOptions = LayoutOptions.Center;
+      VerticalOptions = LayoutOptions.Center;
+      Build();
+    }
+
+    // Component builder
+    private void Build()
     {
       Children.Clear();
+
       var entries = new Microsoft.Maui.Controls.Entry[Length];
       for (int i = 0; i < Length; i++)
       {
-        var entry = new Microsoft.Maui.Controls.Entry
-        {
-          VerticalOptions = LayoutOptions.Fill,
-          VerticalTextAlignment = TextAlignment.Center,
-          HorizontalOptions = LayoutOptions.Fill,
-          HorizontalTextAlignment = TextAlignment.Center,
-          IsTextPredictionEnabled = false,
-          IsSpellCheckEnabled = false,
-          MaxLength = 1,
-          BackgroundColor = Colors.White,
-          Margin = new Thickness(1, 0, 1, 0),
-          TextTransform = TextTransform.None,
-          Keyboard = Type == EntryTypeEnum.Numeric ? Keyboard.Numeric : Keyboard.Plain
-        };
+        var entry = CreateEntry(i, entries);
         entries[i] = entry;
         Children.Add(entry);
-
-        int nextIndex = i + 1;
-        int lastIndex = i - 1;
-        entry.TextChanged += (sender, e) =>
-        {
-          if (e.NewTextValue.Length == 1)
-          {
-            UpdateCode(entries, nextIndex);
-          }
-          else if (e.NewTextValue.Length < e.OldTextValue.Length)
-          {
-            if (lastIndex >= 0)
-            {
-              entries[lastIndex].Focus();
-            }
-          }
-        };
       }
     }
-    private void UpdateCode(Microsoft.Maui.Controls.Entry[] entries, int nextIndex)
+
+    // Helper method to create Entry controls
+    private Microsoft.Maui.Controls.Entry CreateEntry(int index, Microsoft.Maui.Controls.Entry[] entries)
     {
+      var entry = new Microsoft.Maui.Controls.Entry
+      {
+        VerticalOptions = LayoutOptions.Fill,
+        VerticalTextAlignment = TextAlignment.Center,
+        HorizontalOptions = LayoutOptions.Fill,
+        HorizontalTextAlignment = TextAlignment.Center,
+        IsTextPredictionEnabled = false,
+        IsSpellCheckEnabled = false,
+        MaxLength = 1,
+        BackgroundColor = Colors.White,
+        Margin = new Thickness(1, 0, 1, 0),
+        TextTransform = TextTransform.None,
+        Keyboard = Type == EntryTypeEnum.Numeric ? Keyboard.Numeric : Keyboard.Plain
+      };
+
+      int nextIndex = index + 1;
+      int lastIndex = index - 1;
+
+      entry.TextChanged += (sender, e) =>
+      {
+        if (e.NewTextValue.Length == 1)
+        {
+          CodeSerializer(entries, nextIndex);
+        }
+        else if (e.NewTextValue.Length < e.OldTextValue.Length)
+        {
+          // Focus the previous entry if backspace is pressed
+          if (lastIndex >= 0)
+          {
+            entries[lastIndex].Focus();
+          }
+        }
+      };
+
+      return entry;
+    }
+
+    // Code Serializer
+    private void CodeSerializer(Microsoft.Maui.Controls.Entry[] entries, int nextIndex)
+    {
+      HapticFeedback.Perform(HapticFeedbackType.Click);
       Code = string.Concat(entries.Select(e => e.Text));
+
       if (Code.Length == Length)
       {
-        HapticFeedback.Perform(HapticFeedbackType.Click);
         foreach (var entry in entries)
         {
           entry.Unfocus();
         }
-        CodeCompleted?.Invoke(this, new EntryEventArgs(Code));
+
+        var args = new EntryEventArgs(Code);
+
+        // Trigger the CodeCompleted event when the code is fully entered
+        CodeCompleted?.Invoke(this, args);
+
+        // Execute the bindable command if defined
+        if (Command?.CanExecute(args) == true)
+        {
+          Command.Execute(args);
+        }
       }
       else
       {
-        entries[nextIndex].Focus();
+        // Focus the next entry
+        if (nextIndex < Length)
+        {
+          entries[nextIndex].Focus();
+        }
       }
     }
   }
