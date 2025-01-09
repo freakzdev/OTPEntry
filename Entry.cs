@@ -52,6 +52,19 @@ namespace OTPEntry
       }
     }
 
+    // Clear method
+    public new void Clear()
+    {
+      foreach (var child in Children)
+      {
+        if (child is Microsoft.Maui.Controls.Entry entry)
+        {
+          entry.Text = string.Empty;
+        }
+      }
+      Code = string.Empty;
+    }
+
     // Code Completed Event
     public event EventHandler<OTPEntryEventArgs> CodeCompleted = delegate { };
 
