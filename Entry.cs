@@ -153,7 +153,7 @@ namespace OTPEntry
         {
           Command.Execute(args);
         }
-        HapticFeedback.Perform(HapticFeedbackType.Click);
+        HapticFeedback.Perform(HapticFeedbackType.LongPress);
       }
       else
       {
@@ -161,7 +161,7 @@ namespace OTPEntry
         if (nextIndex < Length)
         {
           entries[nextIndex].Focus();
-          HapticFeedback.Perform(HapticFeedbackType.LongPress);
+          HapticFeedback.Perform(HapticFeedbackType.Click);
         }
       }
     }
