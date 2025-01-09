@@ -43,6 +43,18 @@ namespace OTPEntry
     // Entered code property
     public string Code { get; private set; } = string.Empty;
 
+    // Unfocus method
+    public new void Unfocus()
+    {
+      foreach (var child in Children)
+      {
+        if (child is Microsoft.Maui.Controls.Entry entry)
+        {
+          entry.Unfocus();
+        }
+      }
+    }
+
     // Focus method
     public new void Focus()
     {
