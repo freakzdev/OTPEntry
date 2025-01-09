@@ -10,7 +10,7 @@ namespace OTPEntry
         typeof(int),
         typeof(Entry),
         6,
-        propertyChanged: OnLengthChanged
+        propertyChanged: OnPropertyChanged
     );
 
     public int Length
@@ -19,28 +19,22 @@ namespace OTPEntry
       set => SetValue(LengthProperty, value);
     }
 
-    private static void OnLengthChanged(BindableObject bindable, object oldValue, object newValue)
-    {
-      var control = (Entry)bindable;
-      control.Build();
-    }
-
     // Type Bindable Property
     public static readonly BindableProperty TypeProperty = BindableProperty.Create(
-        nameof(EntryTypeEnum),
-        typeof(EntryTypeEnum),
+        nameof(Type),
+        typeof(OTPEntryType),
         typeof(Entry),
-        EntryTypeEnum.Numeric,
-        propertyChanged: OnTypeChanged
+        OTPEntryType.Numeric,
+        propertyChanged: OnPropertyChanged
     );
 
-    public EntryTypeEnum Type
+    public OTPEntryType Type
     {
-      get => (EntryTypeEnum)GetValue(TypeProperty);
+      get => (OTPEntryType)GetValue(TypeProperty);
       set => SetValue(TypeProperty, value);
     }
 
-    private static void OnTypeChanged(BindableObject bindable, object oldValue, object newValue)
+    private static void OnPropertyChanged(BindableObject bindable, object oldValue, object newValue)
     {
       var control = (Entry)bindable;
       control.Build();
@@ -59,7 +53,7 @@ namespace OTPEntry
     }
 
     // Code Completed Event
-    public event EventHandler<EntryEventArgs> CodeCompleted = delegate { };
+    public event EventHandler<OTPEntryEventArgs> CodeCompleted = delegate { };
 
     // Bindable Command Property
     public static readonly BindableProperty CommandProperty = BindableProperty.Create(
@@ -112,7 +106,7 @@ namespace OTPEntry
         BackgroundColor = Colors.White,
         Margin = new Thickness(1, 0, 1, 0),
         TextTransform = TextTransform.None,
-        Keyboard = Type == EntryTypeEnum.Numeric ? Keyboard.Numeric : Keyboard.Plain
+        Keyboard = Type == OTPEntryType.Numeric ? Keyboard.Numeric : Keyboard.Plain
       };
 
       int nextIndex = index + 1;
@@ -140,7 +134,6 @@ namespace OTPEntry
     // Code Serializer
     private void CodeSerializer(Microsoft.Maui.Controls.Entry[] entries, int nextIndex)
     {
-      HapticFeedback.Perform(HapticFeedbackType.Click);
       Code = string.Concat(entries.Select(e => e.Text));
 
       if (Code.Length == Length)
@@ -150,7 +143,7 @@ namespace OTPEntry
           entry.Unfocus();
         }
 
-        var args = new EntryEventArgs(Code);
+        var args = new OTPEntryEventArgs(Code);
 
         // Trigger the CodeCompleted event when the code is fully entered
         CodeCompleted?.Invoke(this, args);
@@ -160,6 +153,7 @@ namespace OTPEntry
         {
           Command.Execute(args);
         }
+        HapticFeedback.Perform(HapticFeedbackType.Click);
       }
       else
       {
@@ -167,6 +161,7 @@ namespace OTPEntry
         if (nextIndex < Length)
         {
           entries[nextIndex].Focus();
+          HapticFeedback.Perform(HapticFeedbackType.LongPress);
         }
       }
     }
