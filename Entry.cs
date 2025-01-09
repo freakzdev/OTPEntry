@@ -106,7 +106,7 @@ namespace OTPEntry
         BackgroundColor = Colors.White,
         Margin = new Thickness(1, 0, 1, 0),
         TextTransform = TextTransform.None,
-        Keyboard = Type == OTPEntryType.Numeric ? Keyboard.Numeric : Keyboard.Plain
+        Keyboard = Type == OTPEntryType.Numeric ? Keyboard.Numeric : Keyboard.Default
       };
 
       int nextIndex = index + 1;
