@@ -34,14 +34,29 @@ namespace OTPEntry
       set => SetValue(TypeProperty, value);
     }
 
+    // IsPassword Bindable Property
+    public static readonly BindableProperty IsPasswordProperty = BindableProperty.Create(
+        nameof(IsPassword),
+        typeof(bool),
+        typeof(Entry),
+        false,
+        propertyChanged: OnPropertyChanged
+    );
+
+    public bool IsPassword
+    {
+      get => (bool)GetValue(TypeProperty);
+      set => SetValue(TypeProperty, value);
+    }
+
     private static void OnPropertyChanged(BindableObject bindable, object oldValue, object newValue)
     {
       var control = (Entry)bindable;
       control.Build();
     }
 
-    // Entered code property
-    public string Code { get; private set; } = string.Empty;
+    // Entered otp property
+    public string OTP { get; private set; } = string.Empty;
 
     // Unfocus method
     public new void Unfocus()
@@ -74,11 +89,11 @@ namespace OTPEntry
           entry.Text = string.Empty;
         }
       }
-      Code = string.Empty;
+      OTP = string.Empty;
     }
 
-    // Code Completed Event
-    public event EventHandler<OTPEntryEventArgs> CodeCompleted = delegate { };
+    // OTP Completed Event
+    public event EventHandler<OTPEntryEventArgs> OTPCompleted = delegate { };
 
     // Bindable Command Property
     public static readonly BindableProperty CommandProperty = BindableProperty.Create(
@@ -131,7 +146,8 @@ namespace OTPEntry
         BackgroundColor = Colors.White,
         Margin = new Thickness(1, 0, 1, 0),
         TextTransform = TextTransform.None,
-        Keyboard = Type == OTPEntryType.Numeric ? Keyboard.Numeric : Keyboard.Default
+        Keyboard = Type == OTPEntryType.Numeric ? Keyboard.Numeric : Keyboard.Default,
+        IsPassword = IsPassword
       };
 
       int nextIndex = index + 1;
@@ -141,7 +157,7 @@ namespace OTPEntry
       {
         if (e.NewTextValue.Length == 1)
         {
-          CodeSerializer(entries, nextIndex);
+          OTPSerializer(entries, nextIndex);
         }
         else if (e.NewTextValue.Length < e.OldTextValue.Length)
         {
@@ -156,22 +172,22 @@ namespace OTPEntry
       return entry;
     }
 
-    // Code Serializer
-    private void CodeSerializer(Microsoft.Maui.Controls.Entry[] entries, int nextIndex)
+    // OTP Serializer
+    private void OTPSerializer(Microsoft.Maui.Controls.Entry[] entries, int nextIndex)
     {
-      Code = string.Concat(entries.Select(e => e.Text));
+      OTP = string.Concat(entries.Select(e => e.Text));
 
-      if (Code.Length == Length)
+      if (OTP.Length == Length)
       {
         foreach (var entry in entries)
         {
           entry.Unfocus();
         }
 
-        var args = new OTPEntryEventArgs(Code);
+        var args = new OTPEntryEventArgs(OTP);
 
-        // Trigger the CodeCompleted event when the code is fully entered
-        CodeCompleted?.Invoke(this, args);
+        // Trigger the OTPCompleted event when the otp property is fully entered
+        OTPCompleted?.Invoke(this, args);
 
         // Execute the bindable command if defined
         if (Command?.CanExecute(args) == true)
