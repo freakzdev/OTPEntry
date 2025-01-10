@@ -45,8 +45,8 @@ namespace OTPEntry
 
     public bool IsPassword
     {
-      get => (bool)GetValue(TypeProperty);
-      set => SetValue(TypeProperty, value);
+      get => (bool)GetValue(IsPasswordProperty);
+      set => SetValue(IsPasswordProperty, value);
     }
 
     private static void OnPropertyChanged(BindableObject bindable, object oldValue, object newValue)
