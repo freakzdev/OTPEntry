@@ -1,4 +1,6 @@
+using System.Diagnostics;
 using System.Windows.Input;
+using CommunityToolkit.Maui.Behaviors;
 
 namespace OTPEntry
 {
@@ -126,6 +128,9 @@ namespace OTPEntry
       for (int i = 0; i < Length; i++)
       {
         var entry = CreateEntry(i, entries);
+
+        entry.Behaviors.Add(new SelectAllTextBehavior());
+
         entries[i] = entry;
         Children.Add(entry);
       }
@@ -159,13 +164,9 @@ namespace OTPEntry
         {
           OTPSerializer(entries, nextIndex);
         }
-        else if (e.NewTextValue.Length < e.OldTextValue.Length)
+        else if (string.IsNullOrEmpty(e.NewTextValue) && lastIndex >= 0)
         {
-          // Focus the previous entry if backspace is pressed
-          if (lastIndex >= 0)
-          {
-            entries[lastIndex].Focus();
-          }
+          entries[lastIndex].Focus();
         }
       };
 
@@ -175,15 +176,12 @@ namespace OTPEntry
     // OTP Serializer
     private void OTPSerializer(Microsoft.Maui.Controls.Entry[] entries, int nextIndex)
     {
-      OTP = string.Concat(entries.Select(e => e.Text));
 
-      if (OTP.Length == Length)
+      if (nextIndex == Length)
       {
-        foreach (var entry in entries)
-        {
-          entry.Unfocus();
-        }
+        entries[nextIndex - 1].Unfocus();
 
+        OTP = string.Concat(entries.Select(e => e.Text));
         var args = new OTPEntryEventArgs(OTP);
 
         // Trigger the OTPCompleted event when the otp property is fully entered
