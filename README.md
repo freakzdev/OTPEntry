@@ -28,8 +28,8 @@ Install-Package OTPEntry
 Current version: 1.0.0
 
 <div style="margin: 20px 0;">
-    <img src="files/Entry01.PNG" width="40%" height="auto" style="border: 1px solid #4d4d4d50;">
-    <img src="files/Entry02.PNG" width="40%" height="auto" style="border: 1px solid #4d4d4d50;">
+    <img src="files/Entry01.png" width="40%" height="auto" style="border: 1px solid #4d4d4d50;">
+    <img src="files/Entry02.png" width="40%" height="auto" style="border: 1px solid #4d4d4d50;">
 </div>
 
 ## Properties
