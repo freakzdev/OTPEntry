@@ -138,6 +138,12 @@ namespace YourNamespace
 }
 ```
 
+## Sample
+
+<div style="margin: 20px 0;">
+    <img src="files/Sample.gif" width="40%" height="auto" style="border: 2px solid #4d4d4d80;">
+</div>
+
 ## License
 
 This project is licensed under the MIT License. See the LICENSE file for more details.
@@ -145,9 +151,3 @@ This project is licensed under the MIT License. See the LICENSE file for more de
 ## Contact
 
 For any questions or feedback, please contact us at [support@freakz.dev](mailto:support@freakz.dev).
-
-## Sample
-
-<div style="margin: 20px 0;">
-    <img src="files/Sample.gif" width="40%" height="auto" style="border: 2px solid #4d4d4d80;">
-</div>
