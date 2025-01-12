@@ -1,5 +1,9 @@
 # OTPEntry
 
+<div style="text-align: center; margin: 20px 0;">
+    <img src="files/Sample.gif" alt="Animación del Proyecto" width="180" height="auto" style="border: 2px solid #4d4d4d80;">
+</div>
+
 OTPEntry is a .NET MAUI library for creating One-Time Password (OTP) entry controls. This library supports alphanumeric and numeric OTP entries and provides a customizable user interface.
 
 ## Features

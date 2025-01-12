@@ -152,7 +152,8 @@ namespace OTPEntry
         Margin = new Thickness(1, 0, 1, 0),
         TextTransform = TextTransform.None,
         Keyboard = Type == OTPEntryType.Numeric ? Keyboard.Numeric : Keyboard.Default,
-        IsPassword = IsPassword
+        IsPassword = IsPassword,
+        FontSize = IsPassword ? 24 : 20
       };
 
       int nextIndex = index + 1;
