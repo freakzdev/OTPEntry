@@ -1,10 +1,10 @@
 # OTPEntry
 
-<div style="text-align: center; margin: 20px 0;">
-    <img src="files/Sample.gif" alt="Animación del Proyecto" width="180" height="auto" style="border: 2px solid #4d4d4d80;">
-</div>
-
 OTPEntry is a .NET MAUI library for creating One-Time Password (OTP) entry controls. This library supports alphanumeric and numeric OTP entries and provides a customizable user interface.
+
+<div style="margin: 20px 0;">
+    <img src="files/Entry.gif" width="40%" height="auto" style="border: 2px solid #4d4d4d80;">
+</div>
 
 ## Features
 
@@ -24,6 +24,35 @@ Install-Package OTPEntry
 ## Version
 
 Current version: 1.0.0
+
+<div style="margin: 20px 0;">
+    <img src="files/Entry01.PNG" width="40%" height="auto" style="border: 1px solid #4d4d4d50;">
+    <img src="files/Entry02.PNG" width="40%" height="auto" style="border: 1px solid #4d4d4d50;">
+</div>
+
+## Properties
+
+<table style="border: 1px solid #4d4d4d50;">
+    <tr style="font-weight: 900;background-color:#4d4d4d20;"><td>Property</td><td>Description</td><td>Default Value</td></tr>
+    <tr><td style="font-weight: 600;">Length</td><td>The length of the OTP.</td><td>6</td></tr>
+    <tr><td style="font-weight: 600;">Type</td><td>Defines the type of keyboard, either alphanumeric or numeric.</td><td>Numeric</td></tr>
+    <tr><td style="font-weight: 600;">IsPassword</td><td>Defines whether the code is visible or not.</td><td>false</td></tr>
+    <tr><td style="font-weight: 600;">OTP</td><td>Read-only property to get the entered code.</td><td>N/A</td></tr>
+</table>
+
+## Methods
+
+- **Focus**: Sets focus on the control.
+- **Unfocus**: Removes focus from the control.
+- **Clear**: Clears the entered code in the control.
+
+## Events
+
+- **OTPCompleted**: Triggered when the entered code is completed.
+
+## Commands
+
+- **Command**: An `ICommand` that executes when the entered code is completed.
 
 ## Usage
 
@@ -116,3 +145,9 @@ This project is licensed under the MIT License. See the LICENSE file for more de
 ## Contact
 
 For any questions or feedback, please contact us at [support@freakz.dev](mailto:support@freakz.dev).
+
+## Sample
+
+<div style="margin: 20px 0;">
+    <img src="files/Sample.gif" width="40%" height="auto" style="border: 2px solid #4d4d4d80;">
+</div>
