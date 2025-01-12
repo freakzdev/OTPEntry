@@ -1,4 +1,4 @@
-[EN](README.md) | [ES](README.es.md)
+[EN](README.md) | ES
 
 # OTPEntry
 
