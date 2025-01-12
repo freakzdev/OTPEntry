@@ -1,4 +1,4 @@
-[EN](README.md) | ES
+[🇺🇸 EN](README.md) | 🇪🇸 ES
 
 # OTPEntry
 
