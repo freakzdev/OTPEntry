@@ -36,8 +36,8 @@ Install-Package OTPEntry
 Versión actual: 1.0.1
 
 <div style="margin: 20px 0;">
-  <img src="assets/Entry01.png" width="40%" height="auto" style="border: 1px solid #4d4d4d50;">
-  <img src="assets/Entry02.png" width="40%" height="auto" style="border: 1px solid #4d4d4d50;">
+  <img src="assets/normal.png" width="40%" height="auto" style="border: 1px solid #4d4d4d50;">
+  <img src="assets/password.png" width="40%" height="auto" style="border: 1px solid #4d4d4d50;">
 </div>
 
 ## Propiedades
