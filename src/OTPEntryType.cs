@@ -1,4 +1,4 @@
-namespace OTPEntry
+namespace FreakzDEV.OTPEntry
 {
   // Enum representing the type of OTP entry
   public enum OTPEntryType

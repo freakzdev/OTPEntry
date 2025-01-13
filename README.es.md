@@ -5,7 +5,7 @@
 OTPEntry es una biblioteca de .NET MAUI para crear controles de entrada de Contraseña de Un Solo Uso (OTP). Esta biblioteca soporta entradas OTP alfanuméricas y numéricas y proporciona una interfaz de usuario personalizable.
 
 <div style="margin: 20px 0;">
-  <img src="files/Entry.gif" width="40%" height="auto" style="border: 1px solid #4d4d4d50;">
+  <img src="assets/Entry.gif" width="40%" height="auto" style="border: 1px solid #4d4d4d50;">
 </div>
 
 ## Características
@@ -17,19 +17,27 @@ OTPEntry es una biblioteca de .NET MAUI para crear controles de entrada de Contr
 
 ## Instalación
 
-Para instalar Feedback, ejecute el siguiente comando en la Consola del Administrador de Paquetes NuGet:
+Para instalar OTPEntry, ejecute el siguiente comando en la Consola del Administrador de Paquetes NuGet:
 
 ```sh
 Install-Package OTPEntry
 ```
+<div style="margin: 20px 0;">
+  <a href="https://www.nuget.org/packages/FreakzDEV.OTPEntry" style="text-decoration: none;color: #004880;">
+    <div style="display: inline-flex;gap:10px;align-items: center;">
+      <img src="assets/nuget.svg" width="24px" height="auto" >
+      <span style="font-weight: 900; font-size: 20px;">Nuget Package</span>
+    </div>
+  </a>
+</div>
 
 ## Versión
 
-Versión actual: 1.0.0
+Versión actual: 1.0.1
 
 <div style="margin: 20px 0;">
-  <img src="files/Entry01.png" width="40%" height="auto" style="border: 1px solid #4d4d4d50;">
-  <img src="files/Entry02.png" width="40%" height="auto" style="border: 1px solid #4d4d4d50;">
+  <img src="assets/Entry01.png" width="40%" height="auto" style="border: 1px solid #4d4d4d50;">
+  <img src="assets/Entry02.png" width="40%" height="auto" style="border: 1px solid #4d4d4d50;">
 </div>
 
 ## Propiedades
@@ -143,7 +151,7 @@ namespace YourNamespace
 ## Ejemplo
 
 <div style="margin: 20px 0;">
-  <img src="files/Sample.gif" width="40%" height="auto" style="border: 1px solid #4d4d4d50;">
+  <img src="assets/Sample.gif" width="40%" height="auto" style="border: 1px solid #4d4d4d50;">
 </div>
 
 ## Licencia

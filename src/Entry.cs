@@ -2,7 +2,7 @@ using System.Diagnostics;
 using System.Windows.Input;
 using CommunityToolkit.Maui.Behaviors;
 
-namespace OTPEntry
+namespace FreakzDEV.OTPEntry
 {
   public class Entry : StackLayout
   {

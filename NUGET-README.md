@@ -1,12 +1,6 @@
-🇺🇸 EN | [🇪🇸 ES](README.es.md)
-
 # OTPEntry
 
 OTPEntry is a .NET MAUI library for creating One-Time Password (OTP) entry controls. This library supports alphanumeric and numeric OTP entries and provides a customizable user interface.
-
-<div style="margin: 20px 0;">
-    <img src="assets/Entry.gif" width="40%" height="auto" style="border: 1px solid #4d4d4d50;">
-</div>
 
 ## Features
 
@@ -22,33 +16,19 @@ To install OTPEntry, run the following command in the NuGet Package Manager Cons
 ```sh
 Install-Package OTPEntry
 ```
-<div style="margin: 20px 0;">
-  <a href="https://www.nuget.org/packages/FreakzDEV.OTPEntry" style="text-decoration: none;color: #004880;">
-    <div style="display: inline-flex;gap:10px;align-items: center;">
-      <img src="assets/nuget.svg" width="24px" height="auto" >
-      <span style="font-weight: 900; font-size: 20px;">Nuget Package</span>
-    </div>
-  </a>
-</div>
 
 ## Version
 
 Current version: 1.0.1
 
-<div style="margin: 20px 0;">
-    <img src="assets/Entry01.png" width="40%" height="auto" style="border: 1px solid #4d4d4d50;">
-    <img src="assets/Entry02.png" width="40%" height="auto" style="border: 1px solid #4d4d4d50;">
-</div>
-
 ## Properties
 
-<table style="border: 1px solid #4d4d4d50;">
-    <tr style="font-weight: 900;background-color:#4d4d4d20;"><td>Property</td><td>Description</td><td>Default Value</td></tr>
-    <tr><td style="font-weight: 600;">Length</td><td>The length of the OTP.</td><td>6</td></tr>
-    <tr><td style="font-weight: 600;">Type</td><td>Defines the type of keyboard, either alphanumeric or numeric.</td><td>Numeric</td></tr>
-    <tr><td style="font-weight: 600;">IsPassword</td><td>Defines whether the code is visible or not.</td><td>false</td></tr>
-    <tr><td style="font-weight: 600;">OTP</td><td>Read-only property to get the entered code.</td><td>N/A</td></tr>
-</table>
+| Property   | Description                                                   | Default Value |
+|------------|---------------------------------------------------------------|---------------|
+| **Length** | The length of the OTP.                                         | 6             |
+| **Type**   | Defines the type of keyboard, either alphanumeric or numeric.  | Numeric       |
+| **IsPassword** | Defines whether the code is visible or not.                | false         |
+| **OTP**    | Read-only property to get the entered code.                    | N/A           |
 
 ## Methods
 
@@ -147,12 +127,6 @@ namespace YourNamespace
     }
 }
 ```
-
-## Sample
-
-<div style="margin: 20px 0;">
-    <img src="assets/Sample.gif" width="40%" height="auto" style="border: 1px solid #4d4d4d50;">
-</div>
 
 ## License
 
