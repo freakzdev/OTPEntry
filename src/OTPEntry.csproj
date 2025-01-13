@@ -36,6 +36,7 @@
 		<PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
 		<Version>$(VersionPrefix)$(VersionSuffix)</Version>
 		<Company>FreaKZ.dev</Company>
+		<Copyright>Copyright © 2025 FreaKZ.dev</Copyright>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-ios|AnyCPU'">
