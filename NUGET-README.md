@@ -19,7 +19,7 @@ Install-Package OTPEntry
 
 ## Version
 
-Current version: 1.0.1
+Current version: 1.0.2
 
 ## Properties
 
@@ -51,7 +51,7 @@ Here is an example of how to use OTPEntry in your .NET MAUI project:
 ### C# Implementation
 
 ```csharp
-using OTPEntry;
+using FreakzDEV.OTPEntry;
 
 namespace YourNamespace
 {
@@ -84,7 +84,7 @@ namespace YourNamespace
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:otp="clr-namespace:OTPEntry;assembly=OTPEntry"
+             xmlns:otp="clr-namespace:FreakzDEV.OTPEntry;assembly=FreakzDEV.OTPEntry"
              x:Class="YourNamespace.MainPage">
 
     <StackLayout Padding="20">
@@ -105,7 +105,7 @@ namespace YourNamespace
 ```csharp
 using System;
 using Microsoft.Maui.Controls;
-using OTPEntry;
+using FreakzDEV.OTPEntry;
 
 namespace YourNamespace
 {
