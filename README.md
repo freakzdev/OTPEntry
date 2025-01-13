@@ -20,7 +20,7 @@ OTPEntry is a .NET MAUI library for creating One-Time Password (OTP) entry contr
 To install OTPEntry, run the following command in the NuGet Package Manager Console:
 
 ```sh
-Install-Package OTPEntry
+dotnet add package FreakzDEV.OTPEntry --version 1.0.3
 ```
 <div style="margin: 20px 0;">
   <a href="https://www.nuget.org/packages/FreakzDEV.OTPEntry" style="text-decoration: none;color: #004880;">
@@ -33,7 +33,7 @@ Install-Package OTPEntry
 
 ## Version
 
-Current version: 1.0.2
+Current version: 1.0.3
 
 <div style="margin: 20px 0;">
     <img src="assets/normal.png" width="40%" height="auto" style="border: 1px solid #4d4d4d50;">

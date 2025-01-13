@@ -14,12 +14,12 @@ OTPEntry is a .NET MAUI library for creating One-Time Password (OTP) entry contr
 To install OTPEntry, run the following command in the NuGet Package Manager Console:
 
 ```sh
-Install-Package OTPEntry
+dotnet add package FreakzDEV.OTPEntry --version 1.0.3
 ```
 
 ## Version
 
-Current version: 1.0.2
+Current version: 1.0.3
 
 ## Properties
 
