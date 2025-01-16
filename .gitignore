@@ -8,6 +8,9 @@ obj/
 *.suo
 *.sln.docstates
 
+# Configuration files
+appsettings*.json
+
 # Ignore Visual Studio Code settings
 .vscode/
 
